@@ -5,6 +5,10 @@ VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lacinizatar.Bot", "Lacinizatar.Bot\Lacinizatar.Bot.csproj", "{09AC0744-8380-463A-B57C-389217ADB412}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lacinizatar.Logic", "Lacinizatar.Logic\Lacinizatar.Logic.csproj", "{2105DD93-E254-482A-B12D-27D47124199B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lacinizatar.Logic.Tests", "Lacinizatar.Logic.Tests\Lacinizatar.Logic.Tests.csproj", "{51927EE6-F3A6-4ADD-8405-B16CE13FA12C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{09AC0744-8380-463A-B57C-389217ADB412}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09AC0744-8380-463A-B57C-389217ADB412}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09AC0744-8380-463A-B57C-389217ADB412}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2105DD93-E254-482A-B12D-27D47124199B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2105DD93-E254-482A-B12D-27D47124199B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2105DD93-E254-482A-B12D-27D47124199B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2105DD93-E254-482A-B12D-27D47124199B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51927EE6-F3A6-4ADD-8405-B16CE13FA12C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51927EE6-F3A6-4ADD-8405-B16CE13FA12C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51927EE6-F3A6-4ADD-8405-B16CE13FA12C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51927EE6-F3A6-4ADD-8405-B16CE13FA12C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
