@@ -88,7 +88,8 @@ namespace Lacinizatar.Logic
                 (_previousLetter == 'л' ? "a" : "ia"),
                 '\'' => "j",
                 'ь' => "",
-                _ => throw new ArgumentException(nameof(_currentLetter))
+                _ when !char.IsLetter(_currentLetter) => _currentLetter.ToString(),
+                _ => throw new ArgumentException($"{nameof(_currentLetter)} is non-belarussian letter"),
             };
         }
 

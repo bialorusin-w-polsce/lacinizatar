@@ -37,5 +37,40 @@
             var result = new ToBelLatin(cyrillic).Translate();
             Assert.AreEqual(expected, result);
         }
+
+        [TestCase("у мяне ёсьць аловак", "u mianie jość ałovak")]
+        [TestCase("у мяне ёсьць аловак.", "u mianie jość ałovak.")]
+        [TestCase("у мяне ёсьць аловак!", "u mianie jość ałovak!")]
+        [TestCase("у мяне ёсьць аловак?", "u mianie jość ałovak?")]
+        [TestCase("паслухай, у мяне ёсьць аловак", "pasłuchaj, u mianie jość ałovak")]
+        [TestCase("паслухай, у мяне ёсьць: аловак, папера і кніга", "pasłuchaj, u mianie jość: ałovak, papiera i kniha")]
+        [TestCase("паслухай, у мяне ёсьць: аловак, папера і кніга; усё гэта мне патрэбна", "pasłuchaj, u mianie jość: ałovak, papiera i kniha; usio heta mnie patrebna")]
+        [TestCase("я - беларус", "ja - biełarus")]
+
+        public void LowcaseSentence(string cyrillic, string expected)
+        {
+            var result = new ToBelLatin(cyrillic).Translate();
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestCase(" 2+2=5  у мяне ёсьць аловак", " 2+2=5  u mianie jość ałovak")]
+        [TestCase("у мяне ёсьць аловак  123", "u mianie jość ałovak  123")]
+        [TestCase("у мяне*(&   ёсьць аловак     ", "u mianie*(&   jość ałovak     ")]
+
+        public void LowcaseSentenceWithExtraneousSymbols(string cyrillic, string expected)
+        {
+            var result = new ToBelLatin(cyrillic).Translate();
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestCase("qу мяне ёсьць аловак")]
+        [TestCase("у мяне qwer ёсьць аловак")]
+        [TestCase("у мянещ ёсьць аловак")]
+
+        public void LowcaseSentenceWithNonBelarussianLetters_ThrowException(string cyrillic)
+        {
+            var translator = new ToBelLatin(cyrillic);
+            Assert.Throws<ArgumentException>(() => translator.Translate());
+        }
     }
 }
