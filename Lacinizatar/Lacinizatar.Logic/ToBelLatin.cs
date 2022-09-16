@@ -4,6 +4,7 @@ namespace Lacinizatar.Logic
 {
     public class ToBelLatin
     {
+        public static string belLetters = "абвгдеёжзіiйклмнопрстуўфхцчшьыэюя";
         private char _previousLetter;
         private char _currentLetter;
         private char _nextLetter;
@@ -26,6 +27,7 @@ namespace Lacinizatar.Logic
             StringBuilder result = new StringBuilder();
             if (_cyrillic.Length == 1)
             {
+                _currentLetter = _cyrillic[0];
                 return TranslateOneLetter();
             }
 
@@ -43,7 +45,9 @@ namespace Lacinizatar.Logic
 
         internal string TranslateOneLetter()
         {
-            return _currentLetter switch
+            bool isUpper = char.IsUpper(_currentLetter);
+            _currentLetter = char.ToLowerInvariant(_currentLetter);
+            var result = _currentLetter switch
             {
                 'а' => "a",
                 'б' => "b",
@@ -59,6 +63,7 @@ namespace Lacinizatar.Logic
                 'ж' => "ž",
                 'з' => _nextLetter == 'ь' ? "ź" : "z",
                 'і' => "i",
+                'i' => "i", //для Марыі
                 'й' => new char[] { 'а', 'е', 'ё', 'і', 'о', 'у', 'ы', 'э', 'ю', 'я', 'ь' }.Contains(_nextLetter) ?
                 "" :
                 "j",
@@ -91,6 +96,12 @@ namespace Lacinizatar.Logic
                 _ when !char.IsLetter(_currentLetter) => _currentLetter.ToString(),
                 _ => throw new ArgumentException($"{nameof(_currentLetter)} is non-belarussian letter"),
             };
+            if (isUpper)
+            {
+                result = result.ToUpperInvariant();
+            }
+
+            return result;
         }
 
         private void MoveToFirstLetter()
