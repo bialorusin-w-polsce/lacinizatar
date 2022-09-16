@@ -26,12 +26,13 @@ namespace Lacinizatar.Bot
             }
 
             var text = message.Text;
-            if (text == null || text == string.Empty)
+            if (text == null)
             {
                 return;
             }
 
-            if (text.Any(l => !ToBelLatin.belLetters.Contains(char.ToLowerInvariant(l)) && char.IsLetter(l)))
+            var translator = new ToBelLatin(text);
+            if (translator.IsTextNonEmpty())
             {
                 return;
             }

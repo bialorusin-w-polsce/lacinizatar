@@ -63,14 +63,14 @@
             Assert.AreEqual(expected, result);
         }
 
-        [TestCase("qу мяне ёсьць аловак")]
-        [TestCase("у мяне qwer ёсьць аловак")]
-        [TestCase("у мянещ ёсьць аловак")]
+        [TestCase("qу мяне ёсьць аловак", "qu mianie jość ałovak")]
+        [TestCase("у мяне qwer ёсьць аловак", "u mianie qwer jość ałovak")]
+        [TestCase("у мянещ ёсьць аловак", "u mianieщ jość ałovak")]
 
-        public void LowcaseSentenceWithNonBelarussianLetters_ThrowException(string cyrillic)
+        public void LowcaseSentenceWithNonBelarussianLetters(string cyrillic, string expected)
         {
-            var translator = new ToBelLatin(cyrillic);
-            Assert.Throws<ArgumentException>(() => translator.Translate());
+            var result = new ToBelLatin(cyrillic).Translate();
+            Assert.AreEqual(expected, result);
         }
     }
 }

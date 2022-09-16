@@ -4,7 +4,7 @@ namespace Lacinizatar.Logic
 {
     public class ToBelLatin
     {
-        public static string belLetters = "абвгдеёжзіiйклмнопрстуўфхцчшьыэюя";
+        public static string belLetters = "абвгдеёжзійклмнопрстуўфхцчшьыэюя";
         private char _previousLetter;
         private char _currentLetter;
         private char _nextLetter;
@@ -13,7 +13,7 @@ namespace Lacinizatar.Logic
 
         public ToBelLatin(string cyrillicText)
         {
-            _cyrillic = cyrillicText;
+            _cyrillic = cyrillicText ?? throw new ArgumentNullException(nameof(cyrillicText));
             _enumerator = _cyrillic.GetEnumerator();
         }
 
@@ -43,6 +43,11 @@ namespace Lacinizatar.Logic
             return result.ToString();
         }
 
+        public bool IsTextNonEmpty()
+        {
+            return _cyrillic == string.Empty;
+        }
+
         internal string TranslateOneLetter()
         {
             bool isUpper = char.IsUpper(_currentLetter);
@@ -63,7 +68,6 @@ namespace Lacinizatar.Logic
                 'ж' => "ž",
                 'з' => _nextLetter == 'ь' ? "ź" : "z",
                 'і' => "i",
-                'i' => "i", //для Марыі
                 'й' => new char[] { 'а', 'е', 'ё', 'і', 'о', 'у', 'ы', 'э', 'ю', 'я', 'ь' }.Contains(_nextLetter) ?
                 "" :
                 "j",
@@ -93,8 +97,7 @@ namespace Lacinizatar.Logic
                 (_previousLetter == 'л' ? "a" : "ia"),
                 '\'' => "j",
                 'ь' => "",
-                _ when !char.IsLetter(_currentLetter) => _currentLetter.ToString(),
-                _ => throw new ArgumentException($"{nameof(_currentLetter)} is non-belarussian letter"),
+                _ => _currentLetter.ToString(),
             };
             if (isUpper)
             {
