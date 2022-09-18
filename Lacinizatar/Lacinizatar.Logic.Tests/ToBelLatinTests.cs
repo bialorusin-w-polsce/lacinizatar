@@ -72,5 +72,14 @@
             var result = new ToBelLatin(cyrillic).Translate();
             Assert.AreEqual(expected, result);
         }
+
+        [TestCase("Зашнуроўваць", "Zašnuroŭvać")]
+        [TestCase("заШнуроўваць", "ZaŠnuroŭvać")]
+        [TestCase("Хлусіць", "Chłusić")]
+        public void UppercaseSentenceWithNonBelarussianLetters(string cyrillic, string expected)
+        {
+            var result = new ToBelLatin(cyrillic).Translate();
+            Assert.AreEqual(expected, result);
+        }
     }
 }
